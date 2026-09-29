@@ -24,6 +24,56 @@ public class Sorting_Count_17 {
 
     public static void elementsNumber(int[] arrayN) {
 
+        int minimum = arrayN[0];
+        int maximum = arrayN[0];
+
+        for (int i = 1; i < arrayN.length; i++) {
+            if (arrayN[i] < minimum) {
+                minimum = arrayN[i];
+            }
+            if (arrayN[i] > maximum) {
+                maximum = arrayN[i];
+            }
+        }
+
+        long length = (long) maximum - minimum + 1;
+
+        if (length > 1000000) {
+            System.out.println("Ошибка: диапазон значений слишком большой");
+            return;
+        }
+
+        int[] frequencyArray = new int[(int) length];
+
+        for (int i = 0; i < arrayN.length; i++) {
+            int index = arrayN[i] - minimum;
+            frequencyArray[index]++;
+        }
+
+        System.out.println("Статистика:");
+
+        for (int i = 0; i < frequencyArray.length; i++) {
+            if (frequencyArray[i] > 0) {
+                int num = i + minimum;
+                System.out.println("Число: " + num + " встречается - " + frequencyArray[i] + " раз(а)");
+            }
+        }
+
+        int index = 0;
+
+        for (int i = 0; i < frequencyArray.length; i++) {
+            while (frequencyArray[i] > 0) {
+                arrayN[index] = i + minimum;
+                index++;
+                frequencyArray[i]--;
+            }
+        }
+
+        System.out.print("Отсортированный массив: ");
+
+        for (int i = 0; i < arrayN.length; i++) {
+            System.out.print(arrayN[i] + " ");
+        }
     }
 
     static void main() {
