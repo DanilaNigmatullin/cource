@@ -1,4 +1,4 @@
-package io.practice.students.task1;
+package io.practice.objects.students.task1;
 
 public class Student {
 
